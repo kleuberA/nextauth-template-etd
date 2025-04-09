@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "sonner";
 
 export default function RegisterPage() {
     const router = useRouter();
@@ -20,8 +21,11 @@ export default function RegisterPage() {
         if (!res.ok) {
             const data = await res.json();
             setError(data.error || "Erro ao registrar");
+            toast.error(data.error || "Erro ao registrar. Tente novamente.");
             return;
         }
+
+        toast.success('Conta criada com sucesso!');
 
         router.push("/login");
     }
