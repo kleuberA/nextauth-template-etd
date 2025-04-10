@@ -13,15 +13,15 @@ export default function LoginPage() {
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         const res = await signIn("credentials", {
-            redirect: false,
             email,
             password,
+            callbackUrl: "/dashboard",
         });
 
         if (res?.error) {
             setError("Credenciais inválidas");
-        } else {
-            router.push("/");
+        } else if (res?.ok) {
+            router.push("/dashboard");
         }
     }
 

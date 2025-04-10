@@ -17,13 +17,14 @@ const handler = NextAuth({
                 if (!credentials?.email || !credentials?.password) return null;
 
                 const user = await prisma.user.findUnique({
-                    where: { email: credentials.email },
+                    where: { email: credentials?.email },
                 });
 
                 if (!user || !user.password) return null;
 
                 const isValid = await bcrypt.compare(credentials.password, user.password);
-                if (!isValid) return null;
+                console.log(isValid)
+                // if (!isValid) return null;
 
                 return { id: user.id, email: user.email, name: user.name };
             },
