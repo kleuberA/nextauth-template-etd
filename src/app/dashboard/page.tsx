@@ -20,7 +20,7 @@ export default function DashboardPage() {
 
     return (
         <div className="max-w-xl mx-auto mt-20 space-y-4 text-center">
-            <h1 className="text-3xl font-bold">Bem-vindo ao Dashboard</h1>
+            <h1 className="text-3xl font-bold">Bem-vindo(a) {session?.user.name} ao Dashboard</h1>
             <p>
                 Você está logado como: <strong>{session?.user?.email}</strong>
             </p>
